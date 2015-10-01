@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,32 @@ namespace TorrentFlow
         public SettingsForm()
         {
             InitializeComponent();
+        }
+
+        private void autoStart_ChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoStart_ChkBox.Checked)
+            {
+                RegisterStartWithWindows();
+            }
+            else
+            {
+                UnregisterStartWithWindows();
+            }
+        }
+
+        private void RegisterStartWithWindows()
+        {
+            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
+            key.SetValue("TorrentFlow", Application.ExecutablePath.ToString());
+        }
+
+        private void UnregisterStartWithWindows()
+        {
+            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
+            key.DeleteValue("TorrentFlow", false);
         }
     }
 }
