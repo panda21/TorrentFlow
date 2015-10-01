@@ -70,5 +70,17 @@ namespace TorrentFlow.Properties {
                 this["FTPPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FTPDirectory {
+            get {
+                return ((string)(this["FTPDirectory"]));
+            }
+            set {
+                this["FTPDirectory"] = value;
+            }
+        }
     }
 }
