@@ -13,13 +13,40 @@ namespace TorrentFlow
 {
     public partial class SettingsForm : Form
     {
+        private readonly RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
         public SettingsForm()
         {
             InitializeComponent();
         }
 
-        private void autoStart_ChkBox_CheckedChanged(object sender, EventArgs e)
+        private void RegisterStartWithWindows()
         {
+            regKey.SetValue("TorrentFlow", Application.ExecutablePath.ToString());
+        }
+
+        private void UnregisterStartWithWindows()
+        {
+            regKey.DeleteValue("TorrentFlow", false);
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            watchDirectory_dlg.SelectedPath = Properties.Settings.Default.WatchDirectory;
+            watchDirectory_lbl.Text = Properties.Settings.Default.WatchDirectory;
+            autoStart_ChkBox.Checked = (regKey.GetValue("TorrentFlow") != null);
+        }
+
+        private void watchDirectoryBrowse_btn_Click(object sender, EventArgs e)
+        {
+            watchDirectory_dlg.ShowDialog();
+            watchDirectory_lbl.Text = watchDirectory_dlg.SelectedPath;
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WatchDirectory = watchDirectory_dlg.SelectedPath;
+            Properties.Settings.Default.Save();
+
             if (autoStart_ChkBox.Checked)
             {
                 RegisterStartWithWindows();
@@ -28,27 +55,8 @@ namespace TorrentFlow
             {
                 UnregisterStartWithWindows();
             }
-        }
 
-        private void RegisterStartWithWindows()
-        {
-            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-            key.SetValue("TorrentFlow", Application.ExecutablePath.ToString());
-        }
-
-        private void UnregisterStartWithWindows()
-        {
-            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-            key.DeleteValue("TorrentFlow", false);
-        }
-
-        private void SettingsForm_Load(object sender, EventArgs e)
-        {
-            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-            autoStart_ChkBox.Checked = (key.GetValue("TorrentFlow") != null);
+            this.Close();
         }
     }
 }
