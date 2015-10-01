@@ -32,7 +32,6 @@ namespace TorrentFlow
                         client.Credentials = credentials;
                         var ftpAddress = String.Format("ftp://{0}/{1}/{2}", address, destinationDirectory, fileInfo.Name);
                         client.UploadFile(ftpAddress, fileInfo.FullName);
-
                     }
                 }
                 catch (Exception e)
