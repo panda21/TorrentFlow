@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="WatchDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:/Users/alex/Downloads</Value>
+      <Value Profile="(Default)">C:\\Users\\alex\\Downloads</Value>
     </Setting>
   </Settings>
 </SettingsFile>
