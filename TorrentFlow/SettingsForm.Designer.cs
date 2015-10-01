@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.autoStart_ChkBox = new System.Windows.Forms.CheckBox();
             this.watchDirectory_dlg = new System.Windows.Forms.FolderBrowserDialog();
             this.watchDirectory_lbl = new System.Windows.Forms.Label();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.watchDirectory_lbl);
             this.Controls.Add(this.autoStart_ChkBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsForm";
             this.Text = "TorrentFlow Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
