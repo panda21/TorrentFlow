@@ -19,18 +19,6 @@ namespace TorrentFlow
             InitializeComponent();
         }
 
-        private void autoStart_ChkBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (autoStart_ChkBox.Checked)
-            {
-                //RegisterStartWithWindows();
-            }
-            else
-            {
-                //UnregisterStartWithWindows();
-            }
-        }
-
         private void RegisterStartWithWindows()
         {
             regKey.SetValue("TorrentFlow", Application.ExecutablePath.ToString());
@@ -52,6 +40,23 @@ namespace TorrentFlow
         {
             watchDirectory_dlg.ShowDialog();
             watchDirectory_lbl.Text = watchDirectory_dlg.SelectedPath;
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WatchDirectory = watchDirectory_dlg.SelectedPath;
+            Properties.Settings.Default.Save();
+
+            if (autoStart_ChkBox.Checked)
+            {
+                RegisterStartWithWindows();
+            }
+            else
+            {
+                UnregisterStartWithWindows();
+            }
+
+            this.Close();
         }
     }
 }
