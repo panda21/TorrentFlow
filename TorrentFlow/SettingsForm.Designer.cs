@@ -1,6 +1,6 @@
 ﻿namespace TorrentFlow
 {
-    partial class MainForm
+    partial class SettingsForm
     {
         /// <summary>
         /// Required designer variable.

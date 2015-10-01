@@ -13,6 +13,7 @@ namespace TorrentFlow
         public ProcessIcon(string name)
         {
             ni = new NotifyIcon();
+            ni.ContextMenuStrip = new ContextMenuBuilder().GetDefaultMenu();
             ni.Text = name;
             ni.Icon = TorrentFlow.Properties.Resources.icon;
         }
@@ -23,11 +24,6 @@ namespace TorrentFlow
         public void Dispose()
         {
             ni.Dispose();
-        }
-
-        public void SetContextMenuStrip(ContextMenuStrip menu)
-        {
-            ni.ContextMenuStrip = menu;
         }
 
         public void Notify(string title, string text, int duration)

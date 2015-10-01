@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TorrentFlow
 {
-    public partial class MainForm : Form
+    public partial class SettingsForm : Form
     {
-        public MainForm()
+        public SettingsForm()
         {
             InitializeComponent();
         }
