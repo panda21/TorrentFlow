@@ -25,7 +25,7 @@ namespace TorrentFlow.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Users\\\\alex\\\\Downloads")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\alex\\Downloads")]
         public string WatchDirectory {
             get {
                 return ((string)(this["WatchDirectory"]));
