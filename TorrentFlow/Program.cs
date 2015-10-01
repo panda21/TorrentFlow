@@ -14,9 +14,17 @@ namespace TorrentFlow
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            //Auto-generated stuff
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new MainForm());
+
+            using (var pi = new ProcessIcon("TorrentFlow"))
+            {
+                pi.Display();
+
+                Application.Run();
+            }
         }
     }
 }
