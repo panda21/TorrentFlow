@@ -3,7 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="WatchDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\\Users\\alex\\Downloads</Value>
+      <Value Profile="(Default)">C:\Users\alex\Downloads</Value>
+    </Setting>
+    <Setting Name="FTPAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FTPUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FTPPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

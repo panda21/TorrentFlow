@@ -34,6 +34,9 @@ namespace TorrentFlow
             watchDirectory_dlg.SelectedPath = Properties.Settings.Default.WatchDirectory;
             watchDirectory_lbl.Text = Properties.Settings.Default.WatchDirectory;
             autoStart_ChkBox.Checked = (regKey.GetValue("TorrentFlow") != null);
+            ftpAddress_txtBox.Text = Properties.Settings.Default.FTPAddress;
+            ftpUsername_txtBox.Text = Properties.Settings.Default.FTPUsername;
+            ftpPassword_txtBox.Text = Properties.Settings.Default.FTPPassword;
         }
 
         private void watchDirectoryBrowse_btn_Click(object sender, EventArgs e)
@@ -45,6 +48,10 @@ namespace TorrentFlow
         private void save_btn_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.WatchDirectory = watchDirectory_dlg.SelectedPath;
+            Properties.Settings.Default.FTPAddress = ftpAddress_txtBox.Text;
+            Properties.Settings.Default.FTPUsername = ftpUsername_txtBox.Text;
+            Properties.Settings.Default.FTPPassword = ftpPassword_txtBox.Text;
+
             Properties.Settings.Default.Save();
 
             if (autoStart_ChkBox.Checked)
