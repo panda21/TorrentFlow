@@ -10,12 +10,12 @@ namespace TorrentFlow
     class DirectoryWatcher
     {
         private readonly FileSystemWatcher watcher;
-        public DirectoryWatcher(string watchDirectory, Action<object, FileSystemEventArgs> handler)
+        public DirectoryWatcher(string watchDirectory, Action<object, FileSystemEventArgs> createdHandler, NotifyFilters notifyFilters)
         {
             if (Directory.Exists(watchDirectory)){
                 watcher = new FileSystemWatcher(watchDirectory);
-                watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime;
-                watcher.Changed += new FileSystemEventHandler(handler);
+                watcher.NotifyFilter = notifyFilters;
+                watcher.Created += new FileSystemEventHandler(createdHandler);
             } else
             {
                 throw new Exception("Directory does not exist!");
