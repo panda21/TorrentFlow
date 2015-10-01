@@ -42,6 +42,7 @@
             this.ftpAddress_txtBox = new System.Windows.Forms.TextBox();
             this.ftpUsername_txtBox = new System.Windows.Forms.TextBox();
             this.ftpPassword_txtBox = new System.Windows.Forms.TextBox();
+            this.displayPassword_chkBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +126,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.displayPassword_chkBox);
             this.groupBox1.Controls.Add(this.ftpPassword_txtBox);
             this.groupBox1.Controls.Add(this.ftpUsername_txtBox);
             this.groupBox1.Controls.Add(this.ftpAddress_txtBox);
@@ -156,9 +158,20 @@
             // 
             this.ftpPassword_txtBox.Location = new System.Drawing.Point(69, 70);
             this.ftpPassword_txtBox.Name = "ftpPassword_txtBox";
-            this.ftpPassword_txtBox.Size = new System.Drawing.Size(185, 20);
+            this.ftpPassword_txtBox.Size = new System.Drawing.Size(119, 20);
             this.ftpPassword_txtBox.TabIndex = 10;
             this.ftpPassword_txtBox.UseSystemPasswordChar = true;
+            // 
+            // displayPassword_chkBox
+            // 
+            this.displayPassword_chkBox.AutoSize = true;
+            this.displayPassword_chkBox.Location = new System.Drawing.Point(194, 72);
+            this.displayPassword_chkBox.Name = "displayPassword_chkBox";
+            this.displayPassword_chkBox.Size = new System.Drawing.Size(60, 17);
+            this.displayPassword_chkBox.TabIndex = 9;
+            this.displayPassword_chkBox.Text = "Display";
+            this.displayPassword_chkBox.UseVisualStyleBackColor = true;
+            this.displayPassword_chkBox.CheckedChanged += new System.EventHandler(this.displayPassword_chkBox_CheckedChanged);
             // 
             // SettingsForm
             // 
@@ -197,6 +210,7 @@
         private System.Windows.Forms.TextBox ftpPassword_txtBox;
         private System.Windows.Forms.TextBox ftpUsername_txtBox;
         private System.Windows.Forms.TextBox ftpAddress_txtBox;
+        private System.Windows.Forms.CheckBox displayPassword_chkBox;
     }
 }
 

@@ -36,7 +36,7 @@ namespace TorrentFlow
             autoStart_ChkBox.Checked = (regKey.GetValue("TorrentFlow") != null);
             ftpAddress_txtBox.Text = Properties.Settings.Default.FTPAddress;
             ftpUsername_txtBox.Text = Properties.Settings.Default.FTPUsername;
-            ftpPassword_txtBox.Text = Properties.Settings.Default.FTPPassword;
+            ftpPassword_txtBox.Text = StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow");
         }
 
         private void watchDirectoryBrowse_btn_Click(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace TorrentFlow
             Properties.Settings.Default.WatchDirectory = watchDirectory_dlg.SelectedPath;
             Properties.Settings.Default.FTPAddress = ftpAddress_txtBox.Text;
             Properties.Settings.Default.FTPUsername = ftpUsername_txtBox.Text;
-            Properties.Settings.Default.FTPPassword = ftpPassword_txtBox.Text;
+            Properties.Settings.Default.FTPPassword = StringCipher.Encrypt(ftpPassword_txtBox.Text, "TorrentFlow");
 
             Properties.Settings.Default.Save();
 
@@ -64,6 +64,18 @@ namespace TorrentFlow
             }
 
             this.Close();
+        }
+
+        private void displayPassword_chkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (displayPassword_chkBox.Checked)
+            {
+                ftpPassword_txtBox.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                ftpPassword_txtBox.UseSystemPasswordChar = true;
+            }
         }
     }
 }
