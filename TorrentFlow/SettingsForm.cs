@@ -13,6 +13,7 @@ namespace TorrentFlow
 {
     public partial class SettingsForm : Form
     {
+        private readonly RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
         public SettingsForm()
         {
             InitializeComponent();
@@ -22,33 +23,35 @@ namespace TorrentFlow
         {
             if (autoStart_ChkBox.Checked)
             {
-                RegisterStartWithWindows();
+                //RegisterStartWithWindows();
             }
             else
             {
-                UnregisterStartWithWindows();
+                //UnregisterStartWithWindows();
             }
         }
 
         private void RegisterStartWithWindows()
         {
-            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-            key.SetValue("TorrentFlow", Application.ExecutablePath.ToString());
+            regKey.SetValue("TorrentFlow", Application.ExecutablePath.ToString());
         }
 
         private void UnregisterStartWithWindows()
         {
-            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-            key.DeleteValue("TorrentFlow", false);
+            regKey.DeleteValue("TorrentFlow", false);
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-            autoStart_ChkBox.Checked = (key.GetValue("TorrentFlow") != null);
+            watchDirectory_dlg.SelectedPath = Properties.Settings.Default.WatchDirectory;
+            watchDirectory_lbl.Text = Properties.Settings.Default.WatchDirectory;
+            autoStart_ChkBox.Checked = (regKey.GetValue("TorrentFlow") != null);
+        }
+
+        private void watchDirectoryBrowse_btn_Click(object sender, EventArgs e)
+        {
+            watchDirectory_dlg.ShowDialog();
+            watchDirectory_lbl.Text = watchDirectory_dlg.SelectedPath;
         }
     }
 }
