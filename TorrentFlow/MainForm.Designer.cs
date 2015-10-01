@@ -1,6 +1,6 @@
 ﻿namespace TorrentFlow
 {
-    partial class Settings
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MainForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 412);
-            this.Name = "MainForm";
             this.Text = "Form1";
-            this.ResumeLayout(false);
-
         }
 
         #endregion
