@@ -52,6 +52,7 @@
             this.Controls.Add(this.autoStart_ChkBox);
             this.Name = "SettingsForm";
             this.Text = "TorrentFlow Settings";
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

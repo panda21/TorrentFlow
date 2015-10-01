@@ -43,5 +43,12 @@ namespace TorrentFlow
             RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
             key.DeleteValue("TorrentFlow", false);
         }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
+            autoStart_ChkBox.Checked = (key.GetValue("TorrentFlow") != null);
+        }
     }
 }
