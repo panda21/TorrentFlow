@@ -1,5 +1,5 @@
 # TorrentFlow
-A tool for simplifying the process of downloading torrents, fetching medatadata, and updating media center libraries.
+A tool for simplifying the process of downloading torrents, managing a seedbox, fetching medatadata, and updating media center libraries.
 
 ##What?
 For a significant amount of folks, updating an HTPC (that's Home Theater PC for you muggles) can be a painful process that looks something like this:
