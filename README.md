@@ -2,7 +2,7 @@
 A tool for simplifying the process of downloading torrents, managing a seedbox, fetching medatadata, and updating media center libraries.
 
 ##What?
-For a significant amount of folks, updating an HTPC (that's Home Theater PC for you muggles) can be a painful process that looks something like this:
+For a significant amount of folks, updating an HTPC (that's Home Theater PC for you muggles) with new content can be a painful process that looks something like this:
 
 1. Download the .torrent file from a torrent tracker site.
 2. Upload the .torrent file to a seedbox.
