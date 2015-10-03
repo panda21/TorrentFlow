@@ -39,12 +39,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ftpAddress_txtBox = new System.Windows.Forms.TextBox();
-            this.ftpUsername_txtBox = new System.Windows.Forms.TextBox();
-            this.ftpPassword_txtBox = new System.Windows.Forms.TextBox();
-            this.displayPassword_chkBox = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ftpDownloadPath_txtBox = new System.Windows.Forms.TextBox();
+            this.ftpUploadPath_txtBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ftpDirectory_txtBox = new System.Windows.Forms.TextBox();
+            this.displayPassword_chkBox = new System.Windows.Forms.CheckBox();
+            this.ftpPassword_txtBox = new System.Windows.Forms.TextBox();
+            this.ftpUsername_txtBox = new System.Windows.Forms.TextBox();
+            this.ftpAddress_txtBox = new System.Windows.Forms.TextBox();
+            this.cancel_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +94,7 @@
             // 
             // save_btn
             // 
-            this.save_btn.Location = new System.Drawing.Point(197, 226);
+            this.save_btn.Location = new System.Drawing.Point(197, 228);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(75, 23);
             this.save_btn.TabIndex = 4;
@@ -102,7 +105,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Location = new System.Drawing.Point(41, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 5;
@@ -111,7 +114,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 43);
+            this.label3.Location = new System.Drawing.Point(31, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 6;
@@ -120,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 70);
+            this.label4.Location = new System.Drawing.Point(33, 68);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 7;
@@ -128,7 +131,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.ftpDirectory_txtBox);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.ftpDownloadPath_txtBox);
+            this.groupBox1.Controls.Add(this.ftpUploadPath_txtBox);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.displayPassword_chkBox);
             this.groupBox1.Controls.Add(this.ftpPassword_txtBox);
@@ -139,37 +144,47 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(260, 122);
+            this.groupBox1.Size = new System.Drawing.Size(260, 145);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FTP Settings";
             // 
-            // ftpAddress_txtBox
+            // label6
             // 
-            this.ftpAddress_txtBox.Location = new System.Drawing.Point(69, 13);
-            this.ftpAddress_txtBox.Name = "ftpAddress_txtBox";
-            this.ftpAddress_txtBox.Size = new System.Drawing.Size(185, 20);
-            this.ftpAddress_txtBox.TabIndex = 8;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 120);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Download Path";
             // 
-            // ftpUsername_txtBox
+            // ftpDownloadPath_txtBox
             // 
-            this.ftpUsername_txtBox.Location = new System.Drawing.Point(69, 40);
-            this.ftpUsername_txtBox.Name = "ftpUsername_txtBox";
-            this.ftpUsername_txtBox.Size = new System.Drawing.Size(185, 20);
-            this.ftpUsername_txtBox.TabIndex = 9;
+            this.ftpDownloadPath_txtBox.Location = new System.Drawing.Point(92, 117);
+            this.ftpDownloadPath_txtBox.Name = "ftpDownloadPath_txtBox";
+            this.ftpDownloadPath_txtBox.Size = new System.Drawing.Size(162, 20);
+            this.ftpDownloadPath_txtBox.TabIndex = 13;
             // 
-            // ftpPassword_txtBox
+            // ftpUploadPath_txtBox
             // 
-            this.ftpPassword_txtBox.Location = new System.Drawing.Point(69, 67);
-            this.ftpPassword_txtBox.Name = "ftpPassword_txtBox";
-            this.ftpPassword_txtBox.Size = new System.Drawing.Size(119, 20);
-            this.ftpPassword_txtBox.TabIndex = 10;
-            this.ftpPassword_txtBox.UseSystemPasswordChar = true;
+            this.ftpUploadPath_txtBox.Location = new System.Drawing.Point(92, 91);
+            this.ftpUploadPath_txtBox.Name = "ftpUploadPath_txtBox";
+            this.ftpUploadPath_txtBox.Size = new System.Drawing.Size(162, 20);
+            this.ftpUploadPath_txtBox.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Upload Path";
             // 
             // displayPassword_chkBox
             // 
             this.displayPassword_chkBox.AutoSize = true;
-            this.displayPassword_chkBox.Location = new System.Drawing.Point(194, 69);
+            this.displayPassword_chkBox.Location = new System.Drawing.Point(194, 67);
             this.displayPassword_chkBox.Name = "displayPassword_chkBox";
             this.displayPassword_chkBox.Size = new System.Drawing.Size(60, 17);
             this.displayPassword_chkBox.TabIndex = 9;
@@ -177,27 +192,44 @@
             this.displayPassword_chkBox.UseVisualStyleBackColor = true;
             this.displayPassword_chkBox.CheckedChanged += new System.EventHandler(this.displayPassword_chkBox_CheckedChanged);
             // 
-            // label5
+            // ftpPassword_txtBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 97);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Directory";
+            this.ftpPassword_txtBox.Location = new System.Drawing.Point(92, 65);
+            this.ftpPassword_txtBox.Name = "ftpPassword_txtBox";
+            this.ftpPassword_txtBox.Size = new System.Drawing.Size(96, 20);
+            this.ftpPassword_txtBox.TabIndex = 10;
+            this.ftpPassword_txtBox.UseSystemPasswordChar = true;
             // 
-            // ftpDirectory_txtBox
+            // ftpUsername_txtBox
             // 
-            this.ftpDirectory_txtBox.Location = new System.Drawing.Point(69, 94);
-            this.ftpDirectory_txtBox.Name = "ftpDirectory_txtBox";
-            this.ftpDirectory_txtBox.Size = new System.Drawing.Size(185, 20);
-            this.ftpDirectory_txtBox.TabIndex = 12;
+            this.ftpUsername_txtBox.Location = new System.Drawing.Point(92, 39);
+            this.ftpUsername_txtBox.Name = "ftpUsername_txtBox";
+            this.ftpUsername_txtBox.Size = new System.Drawing.Size(162, 20);
+            this.ftpUsername_txtBox.TabIndex = 9;
+            // 
+            // ftpAddress_txtBox
+            // 
+            this.ftpAddress_txtBox.Location = new System.Drawing.Point(92, 13);
+            this.ftpAddress_txtBox.Name = "ftpAddress_txtBox";
+            this.ftpAddress_txtBox.Size = new System.Drawing.Size(162, 20);
+            this.ftpAddress_txtBox.TabIndex = 8;
+            // 
+            // cancel_btn
+            // 
+            this.cancel_btn.Location = new System.Drawing.Point(116, 227);
+            this.cancel_btn.Name = "cancel_btn";
+            this.cancel_btn.Size = new System.Drawing.Size(75, 23);
+            this.cancel_btn.TabIndex = 9;
+            this.cancel_btn.Text = "Cancel";
+            this.cancel_btn.UseVisualStyleBackColor = true;
+            this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.watchDirectoryBrowse_btn);
@@ -231,8 +263,11 @@
         private System.Windows.Forms.TextBox ftpUsername_txtBox;
         private System.Windows.Forms.TextBox ftpAddress_txtBox;
         private System.Windows.Forms.CheckBox displayPassword_chkBox;
-        private System.Windows.Forms.TextBox ftpDirectory_txtBox;
+        private System.Windows.Forms.TextBox ftpUploadPath_txtBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox ftpDownloadPath_txtBox;
+        private System.Windows.Forms.Button cancel_btn;
     }
 }
 

@@ -37,7 +37,7 @@ namespace TorrentFlow
             ftpAddress_txtBox.Text = Properties.Settings.Default.FTPAddress;
             ftpUsername_txtBox.Text = Properties.Settings.Default.FTPUsername;
             ftpPassword_txtBox.Text = StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow");
-            ftpDirectory_txtBox.Text = Properties.Settings.Default.FTPDirectory;
+            ftpUploadPath_txtBox.Text = Properties.Settings.Default.FTPDirectory;
         }
 
         private void watchDirectoryBrowse_btn_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace TorrentFlow
             Properties.Settings.Default.FTPAddress = ftpAddress_txtBox.Text;
             Properties.Settings.Default.FTPUsername = ftpUsername_txtBox.Text;
             Properties.Settings.Default.FTPPassword = StringCipher.Encrypt(ftpPassword_txtBox.Text, "TorrentFlow");
-            Properties.Settings.Default.FTPDirectory = ftpDirectory_txtBox.Text;
+            Properties.Settings.Default.FTPDirectory = ftpUploadPath_txtBox.Text;
 
             Properties.Settings.Default.Save();
 
@@ -79,6 +79,11 @@ namespace TorrentFlow
             {
                 ftpPassword_txtBox.UseSystemPasswordChar = true;
             }
+        }
+
+        private void cancel_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
