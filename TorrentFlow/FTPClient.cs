@@ -27,7 +27,7 @@ namespace TorrentFlow
                 try
                 {
                     var fileInfo = new FileInfo(filePath);
-                    using (WebClient client = new WebClient())
+                    using (var client = new WebClient())
                     {
                         client.Credentials = credentials;
                         var ftpAddress = String.Format("ftp://{0}/{1}/{2}", address, destinationDirectory, fileInfo.Name);
@@ -41,6 +41,30 @@ namespace TorrentFlow
                 }
 
             return true;
+        }
+
+        public bool DirectoryIsEmpty(string directory)
+        {
+            var request = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", address, directory));
+            request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
+
+            request.Credentials = credentials;
+
+            var response = (FtpWebResponse)request.GetResponse();
+
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+            var responseString = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
+
+            if (responseString == "")
+            {
+                return true;
+            } else { 
+                return false;
+            }
         }
     }
 }

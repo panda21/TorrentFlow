@@ -29,7 +29,8 @@ namespace TorrentFlow
             }
         }
 
-        public static void Initialize(){
+        private static void Initialize()
+        {
             ftp = new FTPClient(Properties.Settings.Default.FTPAddress, Properties.Settings.Default.FTPUsername, StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow"));
 
             var directoryWatcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.FileName | NotifyFilters.LastWrite);
@@ -37,16 +38,19 @@ namespace TorrentFlow
             directoryWatcher.Start();
         }
 
-        public static void NewTorrentFileDetected(object source, FileSystemEventArgs e)
+        private static void NewTorrentFileDetected(object source, FileSystemEventArgs e)
         {
             if (!(Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPUploadPath) ||
                 Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPAddress) ||
-                Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPUsername))){
-                
+                Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPUsername)))
+            {
+
                 if (ftp.UploadFile(e.FullPath, Properties.Settings.Default.FTPUploadPath))
                 {
                     pi.Notify("Upload Success", e.Name + " was uploaded successfully.", 1000);
-                } else {
+                }
+                else
+                {
                     pi.Notify("Upload Failed", e.Name + " failed to upload.", 3000);
                 }
             }
