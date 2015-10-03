@@ -12,7 +12,9 @@ namespace TorrentFlow
     {
         private static FTPClient ftp;
         private static ProcessIcon pi;
+        private static DirectoryWatcher watcher;
         private static System.Threading.Timer timer;
+        private static bool isPaused = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -35,23 +37,64 @@ namespace TorrentFlow
             ftp = new FTPClient(Properties.Settings.Default.FTPAddress, Properties.Settings.Default.FTPUsername, StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow"));
 
             if (!Utilites.IsNullOrEmpty(Properties.Settings.Default.WatchDirectory)){
-                var directoryWatcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.FileName | NotifyFilters.LastWrite);
-                directoryWatcher.SetFilter("*.torrent");
-                directoryWatcher.Start();
+                watcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.FileName | NotifyFilters.LastWrite);
+                watcher.SetFilter("*.torrent");
+                watcher.Start();
             } else {
                 pi.Notify("Not Watching", "TorrentFlow is not watching for torrent files.", 5000);
             }
 
-
             if (!Utilites.IsNullOrEmpty(Properties.Settings.Default.DownloadDirectory))
             {
-                timer = new System.Threading.Timer((e) =>
-                {
-                    DownloadNewFiles();
-                }, null, new TimeSpan(0, 2, 0), new TimeSpan(0, 5, 0));
+                StartTimer();
             } else {
                 pi.Notify("Not Downloading", "Torrentflow will not download any files.", 5000);
             }
+        }
+
+        public static void Pause()
+        {
+            if (!isPaused)
+            {
+                isPaused = true;
+                watcher.Pause();
+                timer.Dispose();
+                pi.Notify("Paused", "TorrentFlow is now paused.", 1000);
+            }
+            else
+            {
+                pi.Notify("Already Paused", "TorrentFlow is already paused.", 1000);
+            }
+
+        }
+
+        public static void Resume()
+        {
+            if (isPaused)
+            {
+                isPaused = false;
+                watcher.Start();
+                StartTimer();
+                pi.Notify("Running", "TorrentFlow is now running.", 1000);
+            }
+            else
+            {
+                pi.Notify("Already Running", "TorrentFlow is already running.", 1000);
+            }
+
+        }
+
+        private static void StartTimer()
+        {
+            if (timer != null)
+            {
+                timer.Dispose();
+            }
+
+            timer = new System.Threading.Timer((e) =>
+            {
+                DownloadNewFiles();
+            }, null, new TimeSpan(0, 2, 0), new TimeSpan(0, 5, 0));
         }
 
         private static void DownloadNewFiles()
