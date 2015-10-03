@@ -24,7 +24,6 @@ namespace TorrentFlow
         }
         public bool UploadFile(string filePath, string destinationDirectory)
         {
-
                 try
                 {
                     var fileInfo = new FileInfo(filePath);
@@ -44,9 +43,30 @@ namespace TorrentFlow
             return true;
         }
 
-        public void DownloadContents(string directory)
+        private bool DownloadFile(string filePath, string localDirectory)
         {
-            var request = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", address, directory));
+            try
+            {
+                var fileName = filePath.Substring(filePath.LastIndexOf("/") + 1);
+                using (var client = new WebClient())
+                {
+                    client.Credentials = credentials;
+                    var ftpAddress = String.Format("ftp://{0}/{1}", address, filePath);
+                    client.DownloadFile(ftpAddress, localDirectory + "/" + fileName);
+                }
+            }
+            catch (Exception e)
+            {
+                //TODO log this
+                return false;
+            }
+
+            return true;
+        }
+
+        public void DownloadContents(string ftpDirectory, string localDirectory)
+        {
+            var request = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", address, ftpDirectory));
             request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
 
             request.Credentials = credentials;
@@ -63,7 +83,22 @@ namespace TorrentFlow
             if (responseString != "")
             {
                 var fileStrings = Regex.Split(responseString, "\r\n");
-                var test = "meow";
+                foreach (var fileString in fileStrings)
+                {
+                    if (!Utilites.IsNullOrEmpty(fileString))
+                    {
+                        var file = Utilites.GetFileNameFromUnixFormat(fileString);
+                        if (file.isDirectory)
+                        {
+                            var newDirectory = Directory.CreateDirectory(localDirectory + "/" + file.filename);
+                            DownloadContents(ftpDirectory + "/" + file.filename, newDirectory.FullName);
+                        }
+                        else
+                        {
+                            DownloadFile(ftpDirectory + "/" + file.filename, localDirectory);
+                        }
+                    }
+                }
             }
         }
     }
