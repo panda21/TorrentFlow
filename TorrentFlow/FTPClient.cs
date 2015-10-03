@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TorrentFlow
@@ -43,7 +44,7 @@ namespace TorrentFlow
             return true;
         }
 
-        public bool DirectoryIsEmpty(string directory)
+        public void DownloadContents(string directory)
         {
             var request = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", address, directory));
             request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
@@ -59,11 +60,10 @@ namespace TorrentFlow
             reader.Close();
             response.Close();
 
-            if (responseString == "")
+            if (responseString != "")
             {
-                return true;
-            } else { 
-                return false;
+                var fileStrings = Regex.Split(responseString, "\r\n");
+                var test = "meow";
             }
         }
     }

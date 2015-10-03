@@ -29,13 +29,15 @@ namespace TorrentFlow
             }
         }
 
-        private static void Initialize()
+        public static void Initialize()
         {
             ftp = new FTPClient(Properties.Settings.Default.FTPAddress, Properties.Settings.Default.FTPUsername, StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow"));
 
             var directoryWatcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.FileName | NotifyFilters.LastWrite);
             directoryWatcher.SetFilter("*.torrent");
             directoryWatcher.Start();
+
+            ftp.DownloadContents("ready");
         }
 
         private static void NewTorrentFileDetected(object source, FileSystemEventArgs e)
