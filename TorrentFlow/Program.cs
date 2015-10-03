@@ -37,7 +37,11 @@ namespace TorrentFlow
             directoryWatcher.SetFilter("*.torrent");
             directoryWatcher.Start();
 
-            ftp.DownloadContents("ready", Properties.Settings.Default.DownloadDirectory, Properties.Settings.Default.FTPDeleteAfterDL);
+            //var downloadSuccess = ftp.DownloadContents("ready", Properties.Settings.Default.DownloadDirectory);
+            //if (downloadSuccess && Properties.Settings.Default.FTPDeleteAfterDL)
+            //{
+            //    ftp.DeleteContents("ready");
+            //}
         }
 
         private static void NewTorrentFileDetected(object source, FileSystemEventArgs e)
