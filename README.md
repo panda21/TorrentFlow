@@ -27,7 +27,7 @@ These are the features I'd like to implement:
 
  - [x] Automatically upload .torrent files from the HTPC to the seedbox and begin downloading them.
  - [ ] Automatically upload .torrent files from other devices to the seedbox and begin downloading them.
- - [ ] Automatically download completed files from the seedbox to the HTPC.
+ - [x] Automatically download completed files from the seedbox to the HTPC.
  - [ ] Automatically rename or restructure movie and TV show files as necessary.
  - [ ] Automatically fetch metadata for movies and TV shows.
   - [ ] If the movie or show cannot be deteremined, notify the owner and offer solutions.
