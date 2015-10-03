@@ -12,6 +12,7 @@ namespace TorrentFlow
     {
         private static FTPClient ftp;
         private static ProcessIcon pi;
+        private static System.Threading.Timer timer;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -33,15 +34,36 @@ namespace TorrentFlow
         {
             ftp = new FTPClient(Properties.Settings.Default.FTPAddress, Properties.Settings.Default.FTPUsername, StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow"));
 
-            var directoryWatcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.FileName | NotifyFilters.LastWrite);
-            directoryWatcher.SetFilter("*.torrent");
-            directoryWatcher.Start();
+            if (!Utilites.IsNullOrEmpty(Properties.Settings.Default.WatchDirectory)){
+                var directoryWatcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.FileName | NotifyFilters.LastWrite);
+                directoryWatcher.SetFilter("*.torrent");
+                directoryWatcher.Start();
+            } else {
+                pi.Notify("Not Watching", "TorrentFlow is not watching for torrent files.", 5000);
+            }
 
-            //var downloadSuccess = ftp.DownloadContents("ready", Properties.Settings.Default.DownloadDirectory);
-            //if (downloadSuccess && Properties.Settings.Default.FTPDeleteAfterDL)
-            //{
-            //    ftp.DeleteContents("ready");
-            //}
+
+            if (!Utilites.IsNullOrEmpty(Properties.Settings.Default.DownloadDirectory))
+            {
+                timer = new System.Threading.Timer((e) =>
+                {
+                    DownloadNewFiles();
+                }, null, new TimeSpan(0, 2, 0), new TimeSpan(0, 5, 0));
+            } else {
+                pi.Notify("Not Downloading", "Torrentflow will not download any files.", 5000);
+            }
+        }
+
+        private static void DownloadNewFiles()
+        {
+            var downloadSuccess = ftp.DownloadContents(Properties.Settings.Default.FTPDownloadPath, Properties.Settings.Default.DownloadDirectory);
+            if (downloadSuccess)
+            {
+                if (Properties.Settings.Default.FTPDeleteAfterDL)
+                {
+                    ftp.DeleteContents(Properties.Settings.Default.FTPDownloadPath);
+                }
+            }
         }
 
         private static void NewTorrentFileDetected(object source, FileSystemEventArgs e)
