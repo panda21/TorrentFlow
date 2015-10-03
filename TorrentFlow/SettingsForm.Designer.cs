@@ -48,6 +48,7 @@
             this.ftpUsername_txtBox = new System.Windows.Forms.TextBox();
             this.ftpAddress_txtBox = new System.Windows.Forms.TextBox();
             this.cancel_btn = new System.Windows.Forms.Button();
+            this.ftpDeleteAfterDL_chkBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             // 
             // save_btn
             // 
-            this.save_btn.Location = new System.Drawing.Point(197, 228);
+            this.save_btn.Location = new System.Drawing.Point(197, 285);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(75, 23);
             this.save_btn.TabIndex = 4;
@@ -131,6 +132,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ftpDeleteAfterDL_chkBox);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.ftpDownloadPath_txtBox);
             this.groupBox1.Controls.Add(this.ftpUploadPath_txtBox);
@@ -144,7 +146,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(260, 145);
+            this.groupBox1.Size = new System.Drawing.Size(260, 179);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FTP Settings";
@@ -216,7 +218,7 @@
             // 
             // cancel_btn
             // 
-            this.cancel_btn.Location = new System.Drawing.Point(116, 227);
+            this.cancel_btn.Location = new System.Drawing.Point(116, 285);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(75, 23);
             this.cancel_btn.TabIndex = 9;
@@ -224,11 +226,21 @@
             this.cancel_btn.UseVisualStyleBackColor = true;
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
+            // ftpDeleteAfterDL_chkBox
+            // 
+            this.ftpDeleteAfterDL_chkBox.AutoSize = true;
+            this.ftpDeleteAfterDL_chkBox.Location = new System.Drawing.Point(92, 144);
+            this.ftpDeleteAfterDL_chkBox.Name = "ftpDeleteAfterDL_chkBox";
+            this.ftpDeleteAfterDL_chkBox.Size = new System.Drawing.Size(133, 17);
+            this.ftpDeleteAfterDL_chkBox.TabIndex = 15;
+            this.ftpDeleteAfterDL_chkBox.Text = "Delete After Download";
+            this.ftpDeleteAfterDL_chkBox.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 320);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.save_btn);
@@ -268,6 +280,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox ftpDownloadPath_txtBox;
         private System.Windows.Forms.Button cancel_btn;
+        private System.Windows.Forms.CheckBox ftpDeleteAfterDL_chkBox;
     }
 }
 

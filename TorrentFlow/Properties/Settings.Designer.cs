@@ -74,12 +74,36 @@ namespace TorrentFlow.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FTPDirectory {
+        public string FTPUploadPath {
             get {
-                return ((string)(this["FTPDirectory"]));
+                return ((string)(this["FTPUploadPath"]));
             }
             set {
-                this["FTPDirectory"] = value;
+                this["FTPUploadPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FTPDownloadPath {
+            get {
+                return ((string)(this["FTPDownloadPath"]));
+            }
+            set {
+                this["FTPDownloadPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FTPDeleteAfterDL {
+            get {
+                return ((bool)(this["FTPDeleteAfterDL"]));
+            }
+            set {
+                this["FTPDeleteAfterDL"] = value;
             }
         }
     }

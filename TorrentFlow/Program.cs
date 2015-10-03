@@ -39,11 +39,11 @@ namespace TorrentFlow
 
         public static void NewTorrentFileDetected(object source, FileSystemEventArgs e)
         {
-            if (!(Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPDirectory) ||
+            if (!(Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPUploadPath) ||
                 Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPAddress) ||
                 Utilites.IsNullOrEmpty(Properties.Settings.Default.FTPUsername))){
                 
-                if (ftp.UploadFile(e.FullPath, Properties.Settings.Default.FTPDirectory))
+                if (ftp.UploadFile(e.FullPath, Properties.Settings.Default.FTPUploadPath))
                 {
                     pi.Notify("Upload Success", e.Name + " was uploaded successfully.", 1000);
                 } else {

@@ -37,7 +37,9 @@ namespace TorrentFlow
             ftpAddress_txtBox.Text = Properties.Settings.Default.FTPAddress;
             ftpUsername_txtBox.Text = Properties.Settings.Default.FTPUsername;
             ftpPassword_txtBox.Text = StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow");
-            ftpUploadPath_txtBox.Text = Properties.Settings.Default.FTPDirectory;
+            ftpUploadPath_txtBox.Text = Properties.Settings.Default.FTPUploadPath;
+            ftpDownloadPath_txtBox.Text = Properties.Settings.Default.FTPDownloadPath;
+            ftpDeleteAfterDL_chkBox.Checked = Properties.Settings.Default.FTPDeleteAfterDL;
         }
 
         private void watchDirectoryBrowse_btn_Click(object sender, EventArgs e)
@@ -52,7 +54,9 @@ namespace TorrentFlow
             Properties.Settings.Default.FTPAddress = ftpAddress_txtBox.Text;
             Properties.Settings.Default.FTPUsername = ftpUsername_txtBox.Text;
             Properties.Settings.Default.FTPPassword = StringCipher.Encrypt(ftpPassword_txtBox.Text, "TorrentFlow");
-            Properties.Settings.Default.FTPDirectory = ftpUploadPath_txtBox.Text;
+            Properties.Settings.Default.FTPUploadPath = ftpUploadPath_txtBox.Text;
+            Properties.Settings.Default.FTPDownloadPath = ftpDownloadPath_txtBox.Text;
+            Properties.Settings.Default.FTPDeleteAfterDL = ftpDeleteAfterDL_chkBox.Checked;
 
             Properties.Settings.Default.Save();
 
