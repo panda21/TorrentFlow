@@ -59,6 +59,7 @@ namespace TorrentFlow
         private void save_btn_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.WatchDirectory = watchDirectory_dlg.SelectedPath;
+            Properties.Settings.Default.DownloadDirectory = downloadDirectory_dlg.SelectedPath;
             Properties.Settings.Default.FTPAddress = ftpAddress_txtBox.Text;
             Properties.Settings.Default.FTPUsername = ftpUsername_txtBox.Text;
             Properties.Settings.Default.FTPPassword = StringCipher.Encrypt(ftpPassword_txtBox.Text, "TorrentFlow");

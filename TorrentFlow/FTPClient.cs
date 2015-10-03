@@ -43,16 +43,21 @@ namespace TorrentFlow
             return true;
         }
 
-        private bool DownloadFile(string filePath, string localDirectory)
+        private bool DownloadFile(string filePath, string localDirectory, bool deleteOriginal)
         {
             try
             {
                 var fileName = filePath.Substring(filePath.LastIndexOf("/") + 1);
+                var ftpAddress = String.Format("ftp://{0}/{1}", address, filePath);
                 using (var client = new WebClient())
                 {
                     client.Credentials = credentials;
-                    var ftpAddress = String.Format("ftp://{0}/{1}", address, filePath);
                     client.DownloadFile(ftpAddress, localDirectory + "/" + fileName);
+                }
+
+                if (deleteOriginal)
+                {
+                    DeleteFile(filePath);
                 }
             }
             catch (Exception e)
@@ -64,7 +69,45 @@ namespace TorrentFlow
             return true;
         }
 
-        public void DownloadContents(string ftpDirectory, string localDirectory)
+        private void DeleteFile(string filePath)
+        {
+            var ftpAddress = String.Format("ftp://{0}/{1}", address, filePath);
+
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpAddress);
+            request.Method = WebRequestMethods.Ftp.DeleteFile;
+
+            request.Credentials = credentials;
+
+            var response = (FtpWebResponse)request.GetResponse();
+
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+            var responseString = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
+        }
+
+        private void DeleteDirectory(string directoryPath)
+        {
+            var ftpAddress = String.Format("ftp://{0}/{1}", address, directoryPath);
+
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpAddress);
+            request.Method = WebRequestMethods.Ftp.RemoveDirectory;
+
+            request.Credentials = credentials;
+
+            var response = (FtpWebResponse)request.GetResponse();
+
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+            var responseString = reader.ReadToEnd();
+
+            reader.Close();
+            response.Close();
+        }
+
+        public void DownloadContents(string ftpDirectory, string localDirectory, bool deleteOriginal)
         {
             var request = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", address, ftpDirectory));
             request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
@@ -91,11 +134,16 @@ namespace TorrentFlow
                         if (file.isDirectory)
                         {
                             var newDirectory = Directory.CreateDirectory(localDirectory + "/" + file.filename);
-                            DownloadContents(ftpDirectory + "/" + file.filename, newDirectory.FullName);
+                            DownloadContents(ftpDirectory + "/" + file.filename, newDirectory.FullName, deleteOriginal);
+                            
+                            if (deleteOriginal)
+                            {
+                                DeleteDirectory(ftpDirectory + "/" + file.filename);
+                            }
                         }
                         else
                         {
-                            DownloadFile(ftpDirectory + "/" + file.filename, localDirectory);
+                            DownloadFile(ftpDirectory + "/" + file.filename, localDirectory, deleteOriginal);
                         }
                     }
                 }
