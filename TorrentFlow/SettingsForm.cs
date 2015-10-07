@@ -78,7 +78,7 @@ namespace TorrentFlow
                 UnregisterStartWithWindows();
             }
 
-            Program.Initialize();
+            TorrentFlow.Initialize();
             this.Close();
         }
 

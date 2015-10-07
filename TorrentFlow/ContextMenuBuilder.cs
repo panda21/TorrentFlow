@@ -40,12 +40,12 @@ namespace TorrentFlow
 
         private static void PauseProgram(object send, EventArgs e)
         {
-            Program.Pause();
+            TorrentFlow.Pause();
         }
 
         private static void ResumeProgram(object send, EventArgs e)
         {
-            Program.Resume();
+            TorrentFlow.Resume();
         }
 
         private static void ExitClick(object send, EventArgs e)

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace TorrentFlow
 {
-    static class Program
+    static class TorrentFlow
     {
         private static FTPClient ftp;
         private static ProcessIcon pi;
