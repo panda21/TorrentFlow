@@ -36,6 +36,8 @@ These are the features I'd like to implement:
 ##Instructions
 Clone the repo and open the solution file in Visual Studio. Be sure to open up the settings (right click on the icon->"Settings...") before you try anything.
 
+Please understand this is still very much in its infancy. Things *will* break. I don't assume any responsibility for whatever may or may not happen to you or your computer(s) by using this program.
+
 ##Sounds great, but it'd be even better if it could do backflips!
 Feel free to submit a pull request!
 
