@@ -33,7 +33,7 @@ namespace TorrentFlow
             ftp = new FTPClient(Properties.Settings.Default.FTPAddress, Properties.Settings.Default.FTPUsername, StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow"));
 
             if (!Utilites.IsNullOrEmpty(Properties.Settings.Default.WatchDirectory)){
-                watcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.FileName | NotifyFilters.LastWrite);
+                watcher = new DirectoryWatcher(Properties.Settings.Default.WatchDirectory, NewTorrentFileDetected, NotifyFilters.LastWrite);
                 watcher.SetFilter("*.torrent");
                 watcher.Start();
             } else {
