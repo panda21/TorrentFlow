@@ -33,11 +33,15 @@ namespace TorrentFlow
         {
             watchDirectory_dlg.SelectedPath = Properties.Settings.Default.WatchDirectory;
             watchDirectory_lbl.Text = Properties.Settings.Default.WatchDirectory;
+            downloadDirectory_dlg.SelectedPath = Properties.Settings.Default.DownloadDirectory;
+            downloadDirectory_lbl.Text = Properties.Settings.Default.DownloadDirectory;
             autoStart_ChkBox.Checked = (regKey.GetValue("TorrentFlow") != null);
             ftpAddress_txtBox.Text = Properties.Settings.Default.FTPAddress;
             ftpUsername_txtBox.Text = Properties.Settings.Default.FTPUsername;
             ftpPassword_txtBox.Text = StringCipher.Decrypt(Properties.Settings.Default.FTPPassword, "TorrentFlow");
-            ftpDirectory_txtBox.Text = Properties.Settings.Default.FTPDirectory;
+            ftpUploadPath_txtBox.Text = Properties.Settings.Default.FTPUploadPath;
+            ftpDownloadPath_txtBox.Text = Properties.Settings.Default.FTPDownloadPath;
+            ftpDeleteAfterDL_chkBox.Checked = Properties.Settings.Default.FTPDeleteAfterDL;
         }
 
         private void watchDirectoryBrowse_btn_Click(object sender, EventArgs e)
@@ -46,13 +50,22 @@ namespace TorrentFlow
             watchDirectory_lbl.Text = watchDirectory_dlg.SelectedPath;
         }
 
+        private void downloadDirectoryBrowse_btn_Click(object sender, EventArgs e)
+        {
+            downloadDirectory_dlg.ShowDialog();
+            downloadDirectory_lbl.Text = downloadDirectory_dlg.SelectedPath;
+        }
+
         private void save_btn_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.WatchDirectory = watchDirectory_dlg.SelectedPath;
+            Properties.Settings.Default.DownloadDirectory = downloadDirectory_dlg.SelectedPath;
             Properties.Settings.Default.FTPAddress = ftpAddress_txtBox.Text;
             Properties.Settings.Default.FTPUsername = ftpUsername_txtBox.Text;
             Properties.Settings.Default.FTPPassword = StringCipher.Encrypt(ftpPassword_txtBox.Text, "TorrentFlow");
-            Properties.Settings.Default.FTPDirectory = ftpDirectory_txtBox.Text;
+            Properties.Settings.Default.FTPUploadPath = ftpUploadPath_txtBox.Text;
+            Properties.Settings.Default.FTPDownloadPath = ftpDownloadPath_txtBox.Text;
+            Properties.Settings.Default.FTPDeleteAfterDL = ftpDeleteAfterDL_chkBox.Checked;
 
             Properties.Settings.Default.Save();
 
@@ -65,7 +78,7 @@ namespace TorrentFlow
                 UnregisterStartWithWindows();
             }
 
-            Program.Initialize();
+            TorrentFlow.Initialize();
             this.Close();
         }
 
@@ -79,6 +92,11 @@ namespace TorrentFlow
             {
                 ftpPassword_txtBox.UseSystemPasswordChar = true;
             }
+        }
+
+        private void cancel_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

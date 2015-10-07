@@ -15,7 +15,7 @@ namespace TorrentFlow
             ni = new NotifyIcon();
             ni.ContextMenuStrip = new ContextMenuBuilder().GetDefaultMenu();
             ni.Text = name;
-            ni.Icon = TorrentFlow.Properties.Resources.icon;
+            ni.Icon = global::TorrentFlow.Properties.Resources.icon;
         }
         public void Display()
         {

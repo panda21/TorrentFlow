@@ -12,7 +12,7 @@ namespace TorrentFlow.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace TorrentFlow.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\alex\\Downloads")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string WatchDirectory {
             get {
                 return ((string)(this["WatchDirectory"]));
@@ -74,12 +74,48 @@ namespace TorrentFlow.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FTPDirectory {
+        public string FTPUploadPath {
             get {
-                return ((string)(this["FTPDirectory"]));
+                return ((string)(this["FTPUploadPath"]));
             }
             set {
-                this["FTPDirectory"] = value;
+                this["FTPUploadPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FTPDownloadPath {
+            get {
+                return ((string)(this["FTPDownloadPath"]));
+            }
+            set {
+                this["FTPDownloadPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FTPDeleteAfterDL {
+            get {
+                return ((bool)(this["FTPDeleteAfterDL"]));
+            }
+            set {
+                this["FTPDeleteAfterDL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DownloadDirectory {
+            get {
+                return ((string)(this["DownloadDirectory"]));
+            }
+            set {
+                this["DownloadDirectory"] = value;
             }
         }
     }
